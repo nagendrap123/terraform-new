@@ -223,6 +223,87 @@ so have to create 3 instances at a time
 db,backend,frontend
 count=3
 
+terraform functions
+=====================
+for terraform functions we can use "terraform console"
+
+$ terraform console
+
+1.numeric functions
+---------------------
+abs
+----
+abs returns the absolute value of the given number. 
+In other words, if the number is zero or positive then it is returned as-is, but if it is negative then it is multiplied by -1 to make it positive before returning it.
+
+> abs(23)
+> abs(23)
+23
+> abs(0)
+> abs(0)
+0
+> abs(-12.4)
+> abs(-12.4)
+12.4
+
+ceil
+-----
+ceil returns the closest whole number that is greater than or equal to the given value, which may be a fraction.
+
+> ceil(6.5)
+7
+> ceil(7.1)
+8
+floor
+-----
+floor returns the closest whole number that is less than or equal to the given value, which may be a fraction
+> floor(5.4)
+> floor(5.4)
+5
+> floor(4)
+> floor(4)
+4
+
+log 
+----
+log returns the logarithm of a given number in a given base.
+
+syntax
+-------
+log(number, base)
+
+> log(10,2)
+> log(10,2)
+3.3219280948873626
+> log(16,2)
+> log(16,2)
+4
+> ceil(log(10,2))
+> ceil(log(10,2))
+4
+
+max 
+----
+max takes one or more numbers and returns the greatest number from the set
+
+> max(12,15,16,25)
+25
+
+min 
+---
+min takes one or more numbers and returns the smallest number from the set.
+
+> min(12,15,16,25)
+12
+
+parseint 
+--------
+parseint parses the given string as a representation of an integer in the specified base and returns the resulting number.
+The base must be between 2 and 62 inclusive.
+
+
+
+
 
 
   
