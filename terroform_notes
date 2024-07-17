@@ -301,6 +301,125 @@ parseint
 parseint parses the given string as a representation of an integer in the specified base and returns the resulting number.
 The base must be between 2 and 62 inclusive.
 
+pow
+------
+pow calculates an exponent, by raising its first argument to the power of the second argument.
+
+> pow(5,2)
+> pow(5,2)
+25
+> pow(5,0)
+> pow(5,0)
+1
+> pow(5,1)
+> pow(5,1)
+5
+
+signum 
+------
+signum determines the sign of a number, returning a number between -1 and 1 to represent the sign.
+
+> signum (-5)
+> signum (-5)
+-1
+> signum (0)
+> signum (0)
+0
+> signum (5)
+> signum (5)
+1
+
+string functions
+==================
+chomp
+------
+chomp removes newline characters at the end of a string.
+
+This can be useful if, for example, the string was read from a file that has a newline character at the end.
+
+> chomp ("hello\n")
+"hello"
+> chomp ("hello\r\n")
+> chomp ("hello\r\n")
+"hello"
+
+endswith 
+-------
+endswith takes two values: a string to check and a suffix string. The function returns true if the first string ends with that exact suffix.
+
+endswith(string, suffix)
+
+> endswith ("hello world","world")
+> endswith ("hello world","world")
+true
+> endswith ("hello world", "hello")
+> endswith ("hello world", "hello")
+false
+
+format
+------
+The format function produces a string by formatting a number of other values according to a specification string.
+
+format(formatstring, ...arguments)
+
+formatstring: A string that contains placeholders for variable substitution. Placeholders are denoted by % followed by a character indicating the type of value to be inserted.
+arguments: One or more arguments that provide values to replace the placeholders in the formatstring.
+
+placeholders
+-------------
+%s: Replaced by a string value.
+%d, %f: Replaced by integer or float values respectively.
+%t: Replaced by a boolean value (true or false).
+
+> format ("they are %d digits",4)
+"they are 4 digits"
+
+> format ("hello, %s", "nag")
+"hello, nag"
+> format ("hello %s", "sruthi")
+> format ("hello %s", "sruthi")
+"hello sruthi"
+
+> format("Hello, %s!", var.name)
+Hello, Valentina!
+> "Hello, ${var.name}!"
+Hello, Valentina!
+
+formatlist 
+----------
+formatlist produces a list of strings by formatting a number of other values according to a specification string.
+output
+------
+> formatlist("Hello, %s!", ["Valentina", "Ander", "Olivia", "Sam"])
+> formatlist("Hello, %s!", ["Valentina", "Ander", "Olivia", "Sam"])
+tolist([
+  "Hello, Valentina!",
+  "Hello, Ander!",
+  "Hello, Olivia!",
+  "Hello, Sam!",
+])
+
+join 
+-----
+join produces a string by concatenating all of the elements of the specified list of strings with the specified separator.
+
+join ("-", ["nagendra","parchuri","nellore"])
+> join ("-", ["nagendra","parchuri","nellore"])
+"nagendra-parchuri-nellore"
+
+lower
+-----
+lower converts all cased letters in the given string to lowercase.
+
+> lower("NAGENDRA")
+"nagendra"
+
+regex 
+------
+regex applies a regular expression to a string and returns the matching substrings.
+
+
+
 
 
 
