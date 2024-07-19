@@ -418,6 +418,86 @@ regex
 ------
 regex applies a regular expression to a string and returns the matching substrings.
 
+replace
+-------
+replace searches a given string for another given substring, and replaces each occurrence with a given replacement string.
+
+> replace ("5+1+2","+","-")
+> replace ("5+1+2","+","-")
+"5-1-2"
+> replace ("hello world","/w.*d/","everybody")
+>  replace ("hello world","/w.*d/","everybody")
+"hello everybody"
+
+split
+-----
+split produces a list by dividing a given string at all occurrences of a given separator
+
+split(separator, string)
+
+> split (",","nagendra,parchuri,nellore")
+tolist([
+  "nagendra",
+  "parchuri",
+  "nellore",
+])
+
+startswith 
+---------
+startswith takes two values: a string to check and a prefix string. The function returns true if the string begins with that exact prefix.
+
+startswith(string, prefix)
+
+substr 
+-----
+substr extracts a substring from a given string by offset and (maximum) length.
+
+
+substr(string, offset, length)
+
+> substr("hello world",1,4)
+"ello"
+> substr("hello world",0,4)
+"hell"
+its will starts with 0 to 1,2,3,...etc 
+
+title
+------
+title converts the first letter of each word in the given string to uppercase.
+
+> title("hello world")
+"Hello World"
+
+trimprefix
+-----------
+trimprefix removes the specified prefix from the start of the given string. If the string does not start with the prefix, the string is returned unchanged.
+
+> trimprefix("helloworld", "hello")
+world
+
+> trimprefix("helloworld", "cat")
+helloworld
+
+trimspace
+----------
+trimspace removes any space characters from the start and end of the given string.
+
+
+> trimspace("  hello\n\n")
+hello
+
+upper
+-----
+upper converts all cased letters in the given string to uppercase.
+
+> upper("hello")
+HELLO
+> upper("алло!")
+АЛЛО!
+
+
+
+
 
 
 
