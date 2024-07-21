@@ -501,7 +501,28 @@ project
 environment
 terraform
 
+merge function
+==============
+tags = merge(
+       var.common_tags,
+       {
+        Name = "Nagendra Parchuri"
+       }
+       )
+length function and count function
+-----------------------------------
+variables
+variable "instance_names" {
+    type = list
+    default = ["db","backend","frontend"]
+  
+}
 
+count = length(var.instance_names)
+
+terraform outputs 
+=================
+	   
 
 
 
