@@ -522,6 +522,56 @@ count = length(var.instance_names)
 
 terraform outputs 
 =================
+the output comes out list data type 
+
+
+
+r53 
+====
+resource "aws_route53_record" "www" {
+  zone_id = aws_route53_zone.primary.zone_id
+  name    = "www.example.com"
+  type    = "A"
+  ttl     = 300
+  records = [aws_eip.lb.public_ip]
+}
+
+
+Conditions
+===========
+if frontend nagdevops.online ----->public_ip
+others db/backend.nagdevops.online ----->private ip
+
+route53
+========
+resource "aws_route53_record" "expense" {
+    count = length(var.instance_names)
+  zone_id = var.zone_id
+  name    = var.instance_names[count.index] == "frontend" ? var.domain_name : "${var.instance_names[count.index]}.${var.domain_name}"
+  type    = "A"
+  ttl     = 1
+  records = var.instance_names[count.index] == "frontend" ? [aws_instance.expense[count.index].public_ip] : [aws_instance.expense[count.index].private_ip]
+#if records already exists
+allow_overwrite = true
+
+}
+
+
+
+Interpolation
+=============
+we mixed text and variable at a time is called interpolation
+
+
+ansible "hello {{greetings}}" ----- interpolation
+terraform ----------"hello ${var.greetings}" -----interpolation
+. (dot) -- text/variable ---- it is a text 
+
+name    = var.instance_names[count.index] == "frontend" ? var.domain_name : "${var.instance_names[count.index]}.${var.domain_name}"
+
+
+
+
 	   
 
 
