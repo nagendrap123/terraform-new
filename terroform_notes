@@ -540,6 +540,30 @@ output "instance_type" {
 }
 
 
+locals
+======
+locals and variables are same, referring key value pairs 
+locals can hold expressions and use it wherever you want 
+you can use variables inside locals.but you can't use other variables/locals inside variables
+
+expression == conditions/functions/expressions
+
+locals {
+  name = value
+}
+
+expression---var.instance_name == "db" ? "t3.small" : "t3.micro"
+instance_type = var.instance_name == "db" ? "t3.small" : "t3.micro"
+
+locals {
+  ami-id = "ami-041e2ea9402c46c32"
+  tags = {
+    Name  = "local"
+}
+instance_type = var.instance_name == "db" ? "t3.small" : "t3.micro"
+}
+
+
 r53 
 ====
 resource "aws_route53_record" "www" {
