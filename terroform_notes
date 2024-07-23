@@ -619,6 +619,30 @@ data "provider_type" "resource_name" {
   attribute_name = "value"
 }
 
+data "aws_ami" "ami-id" {
+    most_recent = true
+    owners = ["973714476881"]
+    filter {
+      name = "name"
+      values = ["RHEL-9-DevOps-Practice"]
+    }
+     filter {
+    name   = "root-device-type"
+    values = ["ebs"]
+  }
+    filter {
+      name = "virtualization-type"
+      values = ["hvm"] 
+    }
+    filter {
+      name = "architecture"
+      values = ["x86_64"]
+    }
+}
+
+data "aws_vpc" "default" {
+    default = true
+}
 
 ami-041e2ea9402c46c32
 RHEL-9-DevOps-Practice
