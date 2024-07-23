@@ -661,6 +661,36 @@ data "aws_vpc" "default" {
   
 }
 
+state and remote state
+=========================
+terraform ---Iaac, declarative
+declarative -- whatever we write and we will get it 
+terraform is idempotency also 
+whatever we declared terraform should be create
+declared state[terraform files]= actual state [resources inside providers i.e AWS]/created infra
+I ran, terraform created infrastructure
+I run, once again, How terraform will understand what infra it is already created?
+something we called "terraform.tfstate" file 
+terraform.tfstate is the file that terraform tracks that actual infra structure 
+
+I deleted manually inside AWS,but it exists in terraform.tfstate 
+refreshing state 
+-------------------
+it will check terraform.tfstate against AWS 
+terraform files [declarative state] = aws infra [actual state] ---->false 
+terraform is responsible to create the infra equivalent to terraform files ...
+
+aws_instance.locals: Refreshing state... [id=i-0be7d9b35d14af8d8]
+
+Terraform used the selected providers to generate the following execution
+plan. Resource actions are indicated with the following symbols:
+  + create
+
+remote state
+-------------
+
+
+
 
 
 
