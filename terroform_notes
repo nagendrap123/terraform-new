@@ -563,7 +563,7 @@ locals {
 instance_type = var.instance_name == "db" ? "t3.small" : "t3.micro"
 }
 
-
+Note: count and count.index will not work in locals
 r53 
 ====
 resource "aws_route53_record" "www" {
@@ -606,6 +606,37 @@ terraform ----------"hello ${var.greetings}" -----interpolation
 . (dot) -- text/variable ---- it is a text 
 
 name    = var.instance_names[count.index] == "frontend" ? var.domain_name : "${var.instance_names[count.index]}.${var.domain_name}"
+
+data sources
+=============
+going to console, searching it and using it 
+querring and filtering aws 
+terraform have aws credentials
+terraform can query and fetch the ami-id automatically
+
+data "provider_type" "resource_name" {
+  # Configuration settings specific to the data source
+  attribute_name = "value"
+}
+
+
+ami-041e2ea9402c46c32
+RHEL-9-DevOps-Practice
+
+973714476881
+
+hvm
+
+few teams created infra manually, our team using terraform
+we want few data from manual infra, we can fetch by using data source
+
+i want existing default vpc_id
+---------------------------------
+data "aws_vpc" "default" {
+    default = true
+  
+}
+
 
 
 
