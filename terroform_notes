@@ -688,6 +688,108 @@ plan. Resource actions are indicated with the following symbols:
 
 remote state
 -------------
+In colloboration environment 
+duplicate resources or errors 
+locking
+---------
+1 person is creating infra through terraform, can we ask other person do samething?
+no,
+there should be some locking mechanism, when one person is creating infra. it should be locked until is completed
+.lock file --- means some one opened, others are not allowed to edit 
+terraform.tfstate.lock.info 
+
+local state vs remote state 
+============================
+1. there is a chance to delete/edit the file 
+2.it will not work in a colloboration environment
+3.there is a chance multiple persons apply/edit by infra \
+
+so we can use ------> centralize repo --github
+s3 remote state /backend
+-----------------------
+remotestate--s3 bucket 
+
+terraform {
+  backend "s3" {
+    bucket = "mybucket"
+    key    = "path/to/my/key"
+    region = "us-east-1"
+  }
+}
+
+1.first we have to create s3 bucket in the aws 
+
+terraform {
+  backend "s3" {
+    bucket = "nag-devops"
+    key    = "remote-state-demo"
+    region = "us-east-1"
+  }
+}
+
+after that we can terraform init command 
+
+$ terraform init
+
+Initializing the backend...
+
+Successfully configured the backend "s3"! Terraform will automatically
+use this backend unless the backend configuration changes.
+
+
+we are unpdated in provider.tf
+
+s3 bucket can be locked with dynamodb table 
+
+we have to create dynamodb table in aws 
+
+table name --nag-devops-locking 
+partition key -- lockID ---its mandatory ID must be capital
+
+
+terraform {
+  backend "s3" {
+    bucket = "nag-devops"
+    key    = "remote-state-demo"
+    region = "us-east-1"
+	dynamodb_table= "nag-devops-locking"
+  }
+}
+
+remotestate--s3
+locking concept --- dynamodb_table
+
+again we have run terraform init -reconfigure 
+
+
+error 
+-------
+Acquiring state lock. This may take a few moments...
+╷
+│ Error: Error acquiring the state lock
+│
+│ Error message: 2 errors occurred:
+│       * ValidationException: One or more parameter values were invalid: Missing
+│ the key lockID in the item
+│       status code: 400, request id:
+│ UL0CE794MVETSNI2CVMBI4P393VV4KQNSO5AEMVJF66Q9ASUAAJG
+│       * ValidationException: The provided key element does not match the schema
+│       status code: 400, request id:
+│ JK1LMLOA06MSDASNJBI6KTT4EBVV4KQNSO5AEMVJF66Q9ASUAAJG
+
+Solution 
+----------
+LockID -----we have to use partition key 
+
+
+$ terraform apply -auto-approve
+Acquiring state lock. This may take a few moments...
+
+Terraform used the selected providers to generate the following execution
+plan. Resource actions are indicated with the following symbols:
+  + create
+first its trying to create acquiring state lock 
+
 
 
 
