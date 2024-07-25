@@ -8,7 +8,7 @@ resource "aws_security_group" "allow_ports" {
           from_port = ingress.value["port"]
           to_port = ingress.value ["port"]
           protocol = ingress.value["protocol"]
-          cidr_blocks = ingress.value ["cidr_blocks"]
+          cidr_blocks = ingress.value ["cidir_blocks"]
     }  
     
   }
