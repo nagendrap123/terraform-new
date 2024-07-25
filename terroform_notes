@@ -790,11 +790,74 @@ plan. Resource actions are indicated with the following symbols:
   + create
 first its trying to create acquiring state lock 
 
+for each loop
+===============
+count = list 
+for each = map 
 
 
 
+key = value 
 
 
+dynamic block // dynamic loop
+============================
+In Terraform, the dynamic block is used when you need to generate multiple nested blocks dynamically based on a map, list, or set of complex objects
+we can create port numbers 80,8080,3306,22
+
+ingress {
+ from_port =22
+ to_port   =22
+ protocol = "tcp"
+ cidr_blocks = ["0.0.0.0/0"]
+ }
+its called block 
+
+ 
+variable files
+
+variable "inbound_rules" {
+    type = list 
+    default = [
+        {
+            port = 22,
+            cidir_blocks = ["0.0.0.0/0"]
+            protocol = "tcp"
+        },
+         {
+            port = 80,
+            cidir_blocks = ["0.0.0.0/0"]
+            protocol = "tcp"
+        },
+         {
+            port = 8080,
+            cidir_blocks = ["0.0.0.0/0"]
+            protocol = "tcp"
+        },
+         {
+            port = 3306,
+            cidir_blocks = ["0.0.0.0/0"]
+            protocol = "tcp"
+        },
+    ]
+  
+}
+
+
+security group file 
+
+dynamic "ingress" {
+    for_each = var.inbound_rules
+    content {
+          from_port = ingress.value["port"]
+          to_port = ingress.value ["port"]
+          protocol = ingress.value["protocol"]
+          cidr_blocks = ingress.value ["cidr_blocks"]
+    }  
+    
+  }
+  
+  
 
 
 	   
