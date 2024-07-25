@@ -9,7 +9,7 @@ terraform {
 terraform {
   backend "s3" {
     bucket = "nag-devops"
-    key    = "remote-state-demo"
+    key    = "dynamic-demo"
     region = "us-east-1"
     dynamodb_table = "nag-devops-locking"
   }
